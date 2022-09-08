@@ -1,0 +1,37 @@
+{
+    "name": "Code the Dream",
+    "short_name": "Code the Dream",
+    "description": "Real Talent. Real Experience. Real Impact.",
+    "icons": [
+        {
+            "src": "https:\/\/codethedream.org\/wp-content\/uploads\/2022\/03\/logosmall.png",
+            "sizes": "192x192",
+            "type": "image\/png",
+            "purpose": "any"
+        },
+        {
+            "src": "https:\/\/codethedream.org\/wp-content\/uploads\/2022\/03\/logosmall.png",
+            "sizes": "192x192",
+            "type": "image\/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "https:\/\/codethedream.org\/wp-content\/uploads\/2022\/03\/logosmall.png",
+            "sizes": "512x512",
+            "type": "image\/png",
+            "purpose": "any"
+        },
+        {
+            "src": "https:\/\/codethedream.org\/wp-content\/uploads\/2022\/03\/logosmall.png",
+            "sizes": "512x512",
+            "type": "image\/png",
+            "purpose": "maskable"
+        }
+    ],
+    "background_color": "#D5E0EB",
+    "theme_color": "#D5E0EB",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "https:\/\/codethedream.org\/",
+    "scope": "https:\/\/codethedream.org\/"
+}

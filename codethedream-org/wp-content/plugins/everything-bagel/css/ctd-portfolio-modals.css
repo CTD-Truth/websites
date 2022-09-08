@@ -1,0 +1,226 @@
+/* Custom Portfolio Page ----- */
+.portfolio-modals .site-inner {
+  width: 1312px;
+  max-width: 1312px;
+  overflow: hidden;
+  margin-bottom: 0px;
+}
+
+.portfolio-modals.full-width-content .content {
+  width: 1312px;
+}
+.portfolio-modals .entry-content {
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin: 0px !important;
+}
+
+.portfolio-modals .portfolio-shortcode-area .content .entry {
+  width: 424px;
+  box-shadow: none;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.portfolio-shortcode-area .content .entry {
+  width: 424px;
+  box-shadow: none;
+  padding: 12px;
+}
+
+.portfolio-shortcode-area .entry:hover {
+  transform: none;
+}
+
+.portfolio-modals .entry-title {
+  padding-top: 0px;
+}
+
+.masonry-portfolio-page .entry-header::after {
+  padding-bottom: 0px;
+}
+
+.masonry-portfolio-link {
+  color: white;
+}
+
+.masonry-portfolio-link:focus {
+  color: white;
+}
+
+.masonry-portfolio-link:hover {
+  color: currentColor;
+}
+
+.entry-portfolio-card {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-card-body {
+  padding: 28px 39px 32px;
+  position: relative;
+  color: inherit;
+}
+
+.portfolio-featured-image {
+  height: 0;
+  padding-bottom: 70%;
+}
+
+.masonry-portfolio-link:hover .portfolio-card-body::before {
+  -ms-transform: scaleY(1);
+  transform: scaleY(1);
+  transition-timing-function: cubic-bezier(0.93, 0.1, 0, 1.65);
+}
+
+.portfolio-card-body::before {
+  background-color: currentColor;
+  bottom: calc(100% - 1px);
+  content: "";
+  height: 30px;
+  left: 0;
+  position: absolute;
+  -ms-transform: scaleY(0);
+  transform: scaleY(0);
+  -ms-transform-origin: right bottom;
+  transform-origin: right bottom;
+  transition: transform 0.8s;
+  width: 100%;
+  z-index: 2;
+}
+
+.portfolio-card-title {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 30px;
+  font-size: 3rem;
+  font-weight: 500;
+  margin-top: 0px !important;
+  text-align: center;
+}
+
+.portfolio-card-hover-icon {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  padding-bottom: 70%;
+}
+
+.portfolio-card-hover-icon div {
+  -ms-flex-align: center;
+  align-items: center;
+  animation: leave 0.7s;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -ms-flex-pack: center;
+  justify-content: center;
+  left: 0;
+  padding-bottom: 30px;
+  position: absolute;
+  top: 0;
+  transform: translate3d(0, 100%, 0);
+  transition: transform 0.7s;
+  width: 100%;
+}
+
+.portfolio-card-hover-icon span {
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 50%;
+  display: -ms-flexbox;
+  display: flex;
+  fill: #fff;
+  height: 70px;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 70px;
+}
+
+.masonry-portfolio-link:hover .portfolio-card-hover-icon div {
+  transform: translate3d(0, 0, 0);
+  transition-timing-function: cubic-bezier(0.93, 0.1, 0, 1.375);
+}
+
+.portfolio-card-excerpt p {
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+
+.portfolio-modals .modal {
+  margin-top: 80px;
+}
+
+/* -----
+SVG Icon - svgicons.sparkk.fr
+----- */
+
+.svg-icon {
+  width: 35px;
+  height: 27px;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #fff;
+}
+
+.svg-icon circle {
+  stroke: #fff;
+  stroke-width: 1;
+}
+
+/* all media queries */
+
+@media only screen and (max-width: 1313px) {
+  .portfolio-modals .site-inner {
+    width: 870px;
+    max-width: 870px;
+  }
+
+  .portfolio-modals.full-width-content .content {
+    width: 870px;
+  }
+}
+
+@media only screen and (max-width: 871px) {
+  .portfolio-modals .site-inner {
+    width: 470px;
+    max-width: 470px;
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+
+  .portfolio-modals.full-width-content .content {
+    width: 425px;
+    z-index: 11;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .portfolio-modals .site-inner {
+    width: 300px;
+    max-width: 300px;
+  }
+
+  .portfolio-modals.full-width-content .content {
+    width: 280px;
+  }
+
+  .portfolio-modals .portfolio-shortcode-area .content .entry {
+    width: 280px;
+    box-shadow: none;
+    padding: 5px;
+  }
+  .portfolio-modals .entry-title {
+    font-size: 30px;
+    font-size: 3rem;
+  }
+}
