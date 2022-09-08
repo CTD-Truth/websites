@@ -1,0 +1,814 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Manifest added by SuperPWA - Progressive Web Apps Plugin For WordPress -->
+<link rel="manifest" href="../superpwa-manifest.json">
+<link rel="prefetch" href="../superpwa-manifest.json">
+<meta name="theme-color" content="#D5E0EB">
+<!-- / SuperPWA.com -->
+<title>Week 2: Rails Routes and Resources</title>
+<meta name='robots' content='noindex, nofollow'>
+<link rel='dns-prefetch' href='//fonts.googleapis.com'>
+<link rel='dns-prefetch' href='//unpkg.com'>
+<link rel='dns-prefetch' href='//s.w.org'>
+<link rel="alternate" type="application/rss+xml" title="Code the Dream School &raquo; Feed" href="../feed/index.htm">
+<link rel="alternate" type="application/rss+xml" title="Code the Dream School &raquo; Comments Feed" href="../comments/feed/index.htm">
+<link rel="canonical" href="http://rails-week-2">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/learn.codethedream.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.0.1"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='genesis-blocks-style-css-css' href='../wp-content/plugins/genesis-blocks/dist/blocks.style.build.css?ver=1660245318' type='text/css' media='all'>
+<link rel='stylesheet' id='monochrome-pro-css' href='../wp-content/themes/monochrome-pro/style.css?ver=1.3.0' type='text/css' media='all'>
+<style id='monochrome-pro-inline-css' type='text/css'>
+
+
+		a,
+		.entry-meta a:hover,
+		.entry-meta a:focus,
+		.entry-title a:hover,
+		.entry-title a:focus,
+		.genesis-nav-menu a:focus,
+		.genesis-nav-menu a:hover,
+		.genesis-nav-menu .current-menu-item > a,
+		.genesis-nav-menu .toggle-header-search:focus,
+		.genesis-nav-menu .toggle-header-search:hover,
+		.genesis-responsive-menu .genesis-nav-menu a:focus,
+		.genesis-responsive-menu .genesis-nav-menu a:hover,
+		.sub-menu-toggle:focus,
+		.sub-menu-toggle:hover,
+		#genesis-mobile-nav-primary:focus,
+		#genesis-mobile-nav-primary:hover {
+			color: #337ebf;
+		}
+
+		@media only screen and (max-width: 1023px) {
+			.genesis-responsive-menu .genesis-nav-menu a:focus,
+			.genesis-responsive-menu .genesis-nav-menu a:hover,
+			.genesis-responsive-menu .genesis-nav-menu .sub-menu .menu-item a:focus,
+			.genesis-responsive-menu .genesis-nav-menu .sub-menu .menu-item a:hover,
+			.genesis-responsive-menu.nav-primary .genesis-nav-menu .sub-menu .current-menu-item > a {
+				color: #337ebf;
+			}
+		}
+
+		
+
+		button:hover,
+		button:focus,
+		input:hover[type="button"],
+		input:hover[type="reset"],
+		input:hover[type="submit"],
+		input:focus[type="button"],
+		input:focus[type="reset"],
+		input:focus[type="submit"],
+		.archive-pagination a:hover,
+		.archive-pagination a:focus,
+		.archive-pagination li.active a,
+		.button:hover,
+		.button:focus,
+		.image-section button:hover,
+		.image-section button:focus,
+		.image-section input[type="button"]:hover,
+		.image-section input[type="button"]:focus,
+		.image-section input[type="reset"]:hover,
+		.image-section input[type="reset"]:focus,
+		.image-section input[type="submit"]:hover,
+		.image-section input[type="submit"]:focus,
+		.image-section .button:hover,
+		.image-section .button:focus,
+		.image-section .more-link:hover,
+		.image-section .more-link:focus,
+		.more-link:hover,
+		.more-link:focus,
+		.site-container div.wpforms-container-full .wpforms-form input[type="submit"]:focus,
+		.site-container div.wpforms-container-full .wpforms-form input[type="submit"]:hover,
+		.site-container div.wpforms-container-full .wpforms-form button[type="submit"]:focus,
+		.site-container div.wpforms-container-full .wpforms-form button[type="submit"]:hover {
+			background-color: #2e3e5a;
+			color: #ffffff;
+		}
+		
+		.single .content .entry-content > p:first-of-type {
+			font-size: 19px;
+			font-style: italic;
+			font-weight: 600;
+		}
+		
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css?ver=6.0.1' type='text/css' media='all'>
+<link rel='stylesheet' id='wp-components-css' href='../wp-includes/css/dist/components/style.min.css?ver=6.0.1' type='text/css' media='all'>
+<link rel='stylesheet' id='wp-block-editor-css' href='../wp-includes/css/dist/block-editor/style.min.css?ver=6.0.1' type='text/css' media='all'>
+<link rel='stylesheet' id='wp-nux-css' href='../wp-includes/css/dist/nux/style.min.css?ver=6.0.1' type='text/css' media='all'>
+<link rel='stylesheet' id='wp-reusable-blocks-css' href='../wp-includes/css/dist/reusable-blocks/style.min.css?ver=6.0.1' type='text/css' media='all'>
+<link rel='stylesheet' id='wp-editor-css' href='../wp-includes/css/dist/editor/style.min.css?ver=6.0.1' type='text/css' media='all'>
+<link rel='stylesheet' id='clb_custom_editor_blocks-cgb-style-css-css' href='../wp-content/plugins/custom-gutenberg-blocks-master/dist/blocks.style.build.css' type='text/css' media='all'>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--theme-primary: #337ebf;--wp--preset--color--theme-secondary: #2e3e5a;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 14px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 22px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--normal: 18px;--wp--preset--font-size--larger: 26px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='clb-modal-css-css' href='../wp-content/plugins/custom-gutenberg-blocks-master/css/clb-bootstrap-modal-only.css?ver=6.0.1' type='text/css' media='all'>
+<link rel='stylesheet' id='learndash_quiz_front_css-css' href='../wp-content/plugins/sfwd-lms/themes/legacy/templates/learndash_quiz_front.min.css?ver=4.3.0.2' type='text/css' media='all'>
+<link rel='stylesheet' id='jquery-dropdown-css-css' href='../wp-content/plugins/sfwd-lms/assets/css/jquery.dropdown.min.css?ver=4.3.0.2' type='text/css' media='all'>
+<link rel='stylesheet' id='learndash_lesson_video-css' href='../wp-content/plugins/sfwd-lms/themes/legacy/templates/learndash_lesson_video.min.css?ver=4.3.0.2' type='text/css' media='all'>
+<link rel='stylesheet' id='tlpportfolio-css-css' href='../wp-content/plugins/tlp-portfolio/assets/css/tlpportfolio.css?ver=6.0.1' type='text/css' media='all'>
+<link rel='stylesheet' id='monochrome-fonts-css' href='../css?family=Muli%3A300%2C300i%2C400%2C400i%2C600%2C600i%7COpen+Sans+Condensed%3A300&#038;ver=1.3.0' type='text/css' media='all'>
+<link rel='stylesheet' id='monochrome-ionicons-css' href='../ionicons%404.1.2/dist/css/ionicons.min.css?ver=1.3.0' type='text/css' media='all'>
+<link rel='stylesheet' id='monochrome-pro-gutenberg-css' href='../wp-content/themes/monochrome-pro/lib/gutenberg/front-end.css?ver=1.3.0' type='text/css' media='all'>
+<style id='monochrome-pro-gutenberg-inline-css' type='text/css'>
+.ab-block-post-grid .ab-post-grid-items .ab-block-post-grid-title a:hover {
+	color: #337ebf;
+}
+
+.site-container .wp-block-button .wp-block-button__link {
+	background-color: #2e3e5a;
+}
+
+.wp-block-button .wp-block-button__link:not(.has-background),
+.wp-block-button .wp-block-button__link:not(.has-background):focus,
+.wp-block-button .wp-block-button__link:not(.has-background):hover {
+	color: #ffffff;
+}
+
+.site-container .wp-block-button.is-style-outline .wp-block-button__link {
+	color: #2e3e5a;
+}
+
+.site-container .wp-block-button.is-style-outline .wp-block-button__link:focus,
+.site-container .wp-block-button.is-style-outline .wp-block-button__link:hover {
+	color: #51617d;
+}		.site-container .has-small-font-size {
+			font-size: 14px;
+		}		.site-container .has-normal-font-size {
+			font-size: 18px;
+		}		.site-container .has-large-font-size {
+			font-size: 22px;
+		}		.site-container .has-larger-font-size {
+			font-size: 26px;
+		}		.site-container .has-theme-primary-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-primary-color,
+		.site-container .wp-block-button.is-style-outline .wp-block-button__link.has-theme-primary-color {
+			color: #337ebf;
+		}
+
+		.site-container .has-theme-primary-background-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-primary-background-color,
+		.site-container .wp-block-pullquote.is-style-solid-color.has-theme-primary-background-color {
+			background-color: #337ebf;
+		}		.site-container .has-theme-secondary-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-secondary-color,
+		.site-container .wp-block-button.is-style-outline .wp-block-button__link.has-theme-secondary-color {
+			color: #2e3e5a;
+		}
+
+		.site-container .has-theme-secondary-background-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-secondary-background-color,
+		.site-container .wp-block-pullquote.is-style-solid-color.has-theme-secondary-background-color {
+			background-color: #2e3e5a;
+		}
+</style>
+<link rel='stylesheet' id='learndash-front-css' href='../wp-content/plugins/sfwd-lms/themes/ld30/assets/css/learndash.min.css?ver=4.3.0.2' type='text/css' media='all'>
+<style id='learndash-front-inline-css' type='text/css'>
+		.learndash-wrapper .ld-item-list .ld-item-list-item.ld-is-next,
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_questionListItem label:focus-within {
+			border-color: #31425c;
+		}
+
+		/*
+		.learndash-wrapper a:not(.ld-button):not(#quiz_continue_link):not(.ld-focus-menu-link):not(.btn-blue):not(#quiz_continue_link):not(.ld-js-register-account):not(#ld-focus-mode-course-heading):not(#btn-join):not(.ld-item-name):not(.ld-table-list-item-preview):not(.ld-lesson-item-preview-heading),
+		 */
+
+		.learndash-wrapper .ld-breadcrumbs a,
+		.learndash-wrapper .ld-lesson-item.ld-is-current-lesson .ld-lesson-item-preview-heading,
+		.learndash-wrapper .ld-lesson-item.ld-is-current-lesson .ld-lesson-title,
+		.learndash-wrapper .ld-primary-color-hover:hover,
+		.learndash-wrapper .ld-primary-color,
+		.learndash-wrapper .ld-primary-color-hover:hover,
+		.learndash-wrapper .ld-primary-color,
+		.learndash-wrapper .ld-tabs .ld-tabs-navigation .ld-tab.ld-active,
+		.learndash-wrapper .ld-button.ld-button-transparent,
+		.learndash-wrapper .ld-button.ld-button-reverse,
+		.learndash-wrapper .ld-icon-certificate,
+		.learndash-wrapper .ld-login-modal .ld-login-modal-login .ld-modal-heading,
+		#wpProQuiz_user_content a,
+		.learndash-wrapper .ld-item-list .ld-item-list-item a.ld-item-name:hover,
+		.learndash-wrapper .ld-focus-comments__heading-actions .ld-expand-button,
+		.learndash-wrapper .ld-focus-comments__heading a,
+		.learndash-wrapper .ld-focus-comments .comment-respond a,
+		.learndash-wrapper .ld-focus-comment .ld-comment-reply a.comment-reply-link:hover,
+		.learndash-wrapper .ld-expand-button.ld-button-alternate {
+			color: #31425c !important;
+		}
+
+		.learndash-wrapper .ld-focus-comment.bypostauthor>.ld-comment-wrapper,
+		.learndash-wrapper .ld-focus-comment.role-group_leader>.ld-comment-wrapper,
+		.learndash-wrapper .ld-focus-comment.role-administrator>.ld-comment-wrapper {
+			background-color:rgba(49, 66, 92, 0.03) !important;
+		}
+
+
+		.learndash-wrapper .ld-primary-background,
+		.learndash-wrapper .ld-tabs .ld-tabs-navigation .ld-tab.ld-active:after {
+			background: #31425c !important;
+		}
+
+
+
+		.learndash-wrapper .ld-course-navigation .ld-lesson-item.ld-is-current-lesson .ld-status-incomplete,
+		.learndash-wrapper .ld-focus-comment.bypostauthor:not(.ptype-sfwd-assignment) >.ld-comment-wrapper>.ld-comment-avatar img,
+		.learndash-wrapper .ld-focus-comment.role-group_leader>.ld-comment-wrapper>.ld-comment-avatar img,
+		.learndash-wrapper .ld-focus-comment.role-administrator>.ld-comment-wrapper>.ld-comment-avatar img {
+			border-color: #31425c !important;
+		}
+
+
+
+		.learndash-wrapper .ld-loading::before {
+			border-top:3px solid #31425c !important;
+		}
+
+		.learndash-wrapper .ld-button:hover:not(.learndash-link-previous-incomplete):not(.ld-button-transparent),
+		#learndash-tooltips .ld-tooltip:after,
+		#learndash-tooltips .ld-tooltip,
+		.learndash-wrapper .ld-primary-background,
+		.learndash-wrapper .btn-join,
+		.learndash-wrapper #btn-join,
+		.learndash-wrapper .ld-button:not(.ld-button-reverse):not(.learndash-link-previous-incomplete):not(.ld-button-transparent),
+		.learndash-wrapper .ld-expand-button,
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_button:not(.wpProQuiz_button_reShowQuestion):not(.wpProQuiz_button_restartQuiz),
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_button2,
+		.learndash-wrapper .ld-focus .ld-focus-sidebar .ld-course-navigation-heading,
+		.learndash-wrapper .ld-focus .ld-focus-sidebar .ld-focus-sidebar-trigger,
+		.learndash-wrapper .ld-focus-comments .form-submit #submit,
+		.learndash-wrapper .ld-login-modal input[type='submit'],
+		.learndash-wrapper .ld-login-modal .ld-login-modal-register,
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_certificate a.btn-blue,
+		.learndash-wrapper .ld-focus .ld-focus-header .ld-user-menu .ld-user-menu-items a,
+		#wpProQuiz_user_content table.wp-list-table thead th,
+		#wpProQuiz_overlay_close,
+		.learndash-wrapper .ld-expand-button.ld-button-alternate .ld-icon {
+			background-color: #31425c !important;
+		}
+
+		.learndash-wrapper .ld-focus .ld-focus-header .ld-user-menu .ld-user-menu-items:before {
+			border-bottom-color: #31425c !important;
+		}
+
+		.learndash-wrapper .ld-button.ld-button-transparent:hover {
+			background: transparent !important;
+		}
+
+		.learndash-wrapper .ld-focus .ld-focus-header .sfwd-mark-complete .learndash_mark_complete_button,
+		.learndash-wrapper .ld-focus .ld-focus-header #sfwd-mark-complete #learndash_mark_complete_button,
+		.learndash-wrapper .ld-button.ld-button-transparent,
+		.learndash-wrapper .ld-button.ld-button-alternate,
+		.learndash-wrapper .ld-expand-button.ld-button-alternate {
+			background-color:transparent !important;
+		}
+
+		.learndash-wrapper .ld-focus-header .ld-user-menu .ld-user-menu-items a,
+		.learndash-wrapper .ld-button.ld-button-reverse:hover,
+		.learndash-wrapper .ld-alert-success .ld-alert-icon.ld-icon-certificate,
+		.learndash-wrapper .ld-alert-warning .ld-button:not(.learndash-link-previous-incomplete),
+		.learndash-wrapper .ld-primary-background.ld-status {
+			color:white !important;
+		}
+
+		.learndash-wrapper .ld-status.ld-status-unlocked {
+			background-color: rgba(49,66,92,0.2) !important;
+			color: #31425c !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_addToplist {
+			background-color: rgba(49,66,92,0.1) !important;
+			border: 1px solid #31425c !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_toplistTable th {
+			background: #31425c !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_toplistTrOdd {
+			background-color: rgba(49,66,92,0.1) !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_reviewDiv li.wpProQuiz_reviewQuestionTarget {
+			background-color: #31425c !important;
+		}
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_time_limit .wpProQuiz_progress {
+			background-color: #31425c !important;
+		}
+		
+		.learndash-wrapper #quiz_continue_link,
+		.learndash-wrapper .ld-secondary-background,
+		.learndash-wrapper .learndash_mark_complete_button,
+		.learndash-wrapper #learndash_mark_complete_button,
+		.learndash-wrapper .ld-status-complete,
+		.learndash-wrapper .ld-alert-success .ld-button,
+		.learndash-wrapper .ld-alert-success .ld-alert-icon {
+			background-color: #ee6d50 !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content a#quiz_continue_link {
+			background-color: #ee6d50 !important;
+		}
+
+		.learndash-wrapper .course_progress .sending_progress_bar {
+			background: #ee6d50 !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_button_reShowQuestion:hover, .learndash-wrapper .wpProQuiz_content .wpProQuiz_button_restartQuiz:hover {
+			background-color: #ee6d50 !important;
+			opacity: 0.75;
+		}
+
+		.learndash-wrapper .ld-secondary-color-hover:hover,
+		.learndash-wrapper .ld-secondary-color,
+		.learndash-wrapper .ld-focus .ld-focus-header .sfwd-mark-complete .learndash_mark_complete_button,
+		.learndash-wrapper .ld-focus .ld-focus-header #sfwd-mark-complete #learndash_mark_complete_button,
+		.learndash-wrapper .ld-focus .ld-focus-header .sfwd-mark-complete:after {
+			color: #ee6d50 !important;
+		}
+
+		.learndash-wrapper .ld-secondary-in-progress-icon {
+			border-left-color: #ee6d50 !important;
+			border-top-color: #ee6d50 !important;
+		}
+
+		.learndash-wrapper .ld-alert-success {
+			border-color: #ee6d50;
+			background-color: transparent !important;
+			color: #ee6d50;
+		}
+
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_reviewQuestion li.wpProQuiz_reviewQuestionSolved,
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_box li.wpProQuiz_reviewQuestionSolved {
+			background-color: #ee6d50 !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content  .wpProQuiz_reviewLegend span.wpProQuiz_reviewColor_Answer {
+			background-color: #ee6d50 !important;
+		}
+
+		
+		.learndash-wrapper .ld-alert-warning {
+			background-color:transparent;
+		}
+
+		.learndash-wrapper .ld-status-waiting,
+		.learndash-wrapper .ld-alert-warning .ld-alert-icon {
+			background-color: #dd3333 !important;
+		}
+
+		.learndash-wrapper .ld-tertiary-color-hover:hover,
+		.learndash-wrapper .ld-tertiary-color,
+		.learndash-wrapper .ld-alert-warning {
+			color: #dd3333 !important;
+		}
+
+		.learndash-wrapper .ld-tertiary-background {
+			background-color: #dd3333 !important;
+		}
+
+		.learndash-wrapper .ld-alert-warning {
+			border-color: #dd3333 !important;
+		}
+
+		.learndash-wrapper .ld-tertiary-background,
+		.learndash-wrapper .ld-alert-warning .ld-alert-icon {
+			color:white !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_reviewQuestion li.wpProQuiz_reviewQuestionReview,
+		.learndash-wrapper .wpProQuiz_content .wpProQuiz_box li.wpProQuiz_reviewQuestionReview {
+			background-color: #dd3333 !important;
+		}
+
+		.learndash-wrapper .wpProQuiz_content  .wpProQuiz_reviewLegend span.wpProQuiz_reviewColor_Review {
+			background-color: #dd3333 !important;
+		}
+
+		
+</style>
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="../wp-json/index.htm"><link rel="alternate" type="application/json" href="../wp-json/wp/v2/posts/169"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="../xmlrpc.php?rsd">
+<link rel="alternate" type="application/json+oembed" href="../wp-json/oembed/1.0/embed-340?url=https%3A%2F%2Flearn.codethedream.org%2Frails-development-week2%2F">
+<link rel="alternate" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed-341?url=https%3A%2F%2Flearn.codethedream.org%2Frails-development-week2%2F&#038;format=xml">
+                <style>
+                    .tlp-team .short-desc, .tlp-team .tlp-team-isotope .tlp-content, .tlp-team .button-group .selected, .tlp-team .layout1 .tlp-content, .tlp-team .tpl-social a, .tlp-team .tpl-social li a.fa,.tlp-portfolio button.selected,.tlp-portfolio .layoutisotope .tlp-portfolio-item .tlp-content,.tlp-portfolio button:hover {
+                        background: #0367bf ;
+                    }
+                    .tlp-portfolio .layoutisotope .tlp-overlay,.tlp-portfolio .layout1 .tlp-overlay,.tlp-portfolio .layout2 .tlp-overlay,.tlp-portfolio .layout3 .tlp-overlay, .tlp-portfolio .slider .tlp-overlay {
+                        background: rgba(3,103,191,0.8);
+                    }
+                                    </style>
+            <script type='text/javascript'>
+/* <![CDATA[ */
+var VPData = {"__":{"couldnt_retrieve_vp":"Couldn't retrieve Visual Portfolio ID.","pswp_close":"Close (Esc)","pswp_share":"Share","pswp_fs":"Toggle fullscreen","pswp_zoom":"Zoom in\/out","pswp_prev":"Previous (arrow left)","pswp_next":"Next (arrow right)","pswp_share_fb":"Share on Facebook","pswp_share_tw":"Tweet","pswp_share_pin":"Pin it","fancybox_close":"Close","fancybox_next":"Next","fancybox_prev":"Previous","fancybox_error":"The requested content cannot be loaded. <br \/> Please try again later.","fancybox_play_start":"Start slideshow","fancybox_play_stop":"Pause slideshow","fancybox_full_screen":"Full screen","fancybox_thumbs":"Thumbnails","fancybox_download":"Download","fancybox_share":"Share","fancybox_zoom":"Zoom"},"settingsPopupGallery":{"enable_on_wordpress_images":false,"vendor":"fancybox","deep_linking":false,"deep_linking_url_to_share_images":false,"show_arrows":true,"show_counter":true,"show_zoom_button":true,"show_fullscreen_button":true,"show_share_button":true,"show_close_button":true,"show_thumbs":true,"show_download_button":false,"show_slideshow":false,"click_to_zoom":true},"screenSizes":[320,576,768,992,1200]};
+/* ]]> */
+</script>
+<link rel="pingback" href="https://learn.codethedream.org/xmlrpc.php">
+        <style type="text/css">
+            /* If html does not have either class, do not show lazy loaded images. */
+            html:not(.vp-lazyload-enabled):not(.js) .vp-lazyload {
+                display: none;
+            }
+        </style>
+        <script>
+            document.documentElement.classList.add(
+                'vp-lazyload-enabled'
+            );
+        </script>
+        <link rel="icon" href="../wp-content/uploads/2019/10/cropped-CTD-Logo-2-32x32.png" sizes="32x32">
+<link rel="icon" href="../wp-content/uploads/2019/10/cropped-CTD-Logo-2-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="../wp-content/uploads/2019/10/cropped-CTD-Logo-2-180x180.png">
+<meta name="msapplication-TileImage" content="https://learn.codethedream.org/wp-content/uploads/2019/10/cropped-CTD-Logo-2-270x270.png">
+		<style type="text/css" id="wp-custom-css">
+			.genesis-nav-menu a{
+	color:black;
+}
+.site-header.dark{
+	background:white;
+}
+.genesis-nav-menu .sub-menu a{
+	background:white;
+}
+
+.genesis-nav-menu .sub-menu a:focus, .genesis-nav-menu .sub-menu a:hover, .genesis-nav-menu .sub-menu li.current-menu-item > a{
+	background: white;
+}
+
+
+.header-image .title-area, .header-image .site-header.dark .title-area{
+	padding:5px;
+}
+
+img{
+	width:100%;
+	height:auto;
+}
+
+.entry-content pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+	color: black;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+.entry-content pre > code {
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  padding: 0;
+	color: black;
+  margin: 0;
+}
+.entry-content code {
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+		color: black;
+    background-color: rgba(27,31,35,.05);
+    border-radius: 3px;
+}
+
+.home-title h1{
+	font-weight:bold;
+	font-size:50px;
+}
+
+.featured-section .site-header > .wrap{
+	border-bottom:0;
+}
+
+#front-page-1 .image-section{
+	height:80vh !important;
+}
+
+#front-page-2 .flexible-widgets{
+	padding-top:40px;
+}
+
+#front-page-2 .widget-title{
+	font-size:30px;
+}
+.header-image .dark .site-title > a{
+	height:45px;
+}
+
+.header-image .site-title > a{
+	height:45px;
+}
+
+#front-page-2 .solid-section .widget{
+	padding:0;
+}
+
+#front-page-2{
+	border-top:0;
+}
+
+.menu-cards{
+	position:relative;
+}
+
+  .menu-name-4 h3{
+	color:white;
+	position: absolute;
+	text-transform: uppercase;
+    background:rgb(20 19 19 / 85%);
+    width: 100%;
+    bottom: -20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+
+.overlayinn-4:hover {
+	opacity: 0;
+  transition: opacity .5s;
+
+}
+
+.overlayinn-4{
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 30%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9) 100%);
+/* 		background:rgba(85, 85, 85,.6); */
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    padding-bottom: 0px;
+		transition: ease-in-out .5s;
+}
+
+.page-id-570.full-width-content .content{
+	padding:0;
+}
+
+.site-header{
+	background-color: #fff;
+}
+
+.page-id-464 th, td {
+	padding-right: 50px;
+}
+
+#menu-item-1746 a:hover, #menu-item-1752 a:hover, #menu-item-1753 a:hover, #menu-item-1671 a:hover, #menu-item-1665 a:hover, #menu-item-1667 a:hover, #menu-item-1635 a:hover, #menu-item-1510 a:hover, #menu-item-1509 a:hover, #menu-item-1438 a:hover, #menu-item-383 a:hover, #menu-item-1029 a:hover, #menu-item-481 a:hover, #menu-item-1578 a:hover, #menu-item-483 a:hover {
+		color: #ff5c35;
+	}
+
+.syllabus th:nth-of-type(1) {
+	width: 5em;
+}
+
+
+.syllabus th:nth-of-type(2) {
+	width: 10em;
+}
+
+.syllabus th:nth-of-type(3) {
+	width: 10em;
+}
+
+.syllabus th:nth-of-type(4) {
+	width: 26em;
+}
+
+.syllabus td {
+	word-wrap: normal;
+}
+
+
+@media only screen and (max-width: 800px){
+	.genesis-responsive-menu .genesis-nav-menu .menu-item a {
+		background:black;
+}
+/* 	#menu-item-293 a:hover, #menu-item-293 a:hover, #menu-item-293 a:hover, #menu-item-293 a:hover,  */
+}
+
+/* @media only screen and (min-width: 800px) and (max-width: 1023px) {
+	.genesis-responsive-menu .genesis-nav-menu .menu-item a {
+		background:black;
+} */
+
+@media only screen and (max-width: 1023px){
+	
+	.genesis-nav-menu a {
+    color: #f0f3f6;
+	}
+	
+#menu-item-1746 a, #menu-item-1752 a, #menu-item-1753 a, #menu-item-1671 a, #menu-item-1665 a, #menu-item-1667 a, #menu-item-1635 a, #menu-item-1510 a, #menu-item-1509 a, #menu-item-1438 a, #menu-item-383 a, #menu-item-1029 a, #menu-item-481 a, #menu-item-1578 a, #menu-item-483 a {
+		color: #ff5c35;
+	}
+	
+#menu-item-1753 a:hover, #menu-item-1752 a:hover, #menu-item-1746 a:hover, #menu-item-1671 a:hover, #menu-item-1665 a:hover, #menu-item-1667 a:hover, #menu-item-1635 a:hover, #menu-item-1510 a:hover, #menu-item-1509 a:hover, #menu-item-1438 a:hover, #menu-item-383 a:hover, #menu-item-1029 a:hover, #menu-item-481 a:hover, #menu-item-1578 a:hover, #menu-item-483 a:hover {
+		background: #ff5c35;
+		color: white;
+	}
+}
+
+	
+
+/* new-home */
+
+.header-image .title-area{
+	padding-top:20px;
+}
+
+.page-id-1790 .entry-title{
+	display:none;
+}
+
+.page-id-1790 .entry-header::after{
+	border-bottom:0;
+	margin:0;
+	padding-bottom:0;
+	width:0;
+}
+
+.page-id-1790 .site-inner{
+	margin-top:0px;
+}
+
+.nhts{
+	text-shadow: #000 1px 0 10px;
+
+}
+
+
+
+.page-id-1790 .interactive-card.card-basic{
+	background:#2e3e5a;
+}
+
+.page-id-1790 .interactive-card.card-basic h4.clb-card__title{
+	color:#fff;
+}
+
+.wp-custom-logo .title-area{
+	width:200px;
+}
+
+.nav-primary .genesis-nav-menu .sub-menu a {
+ color: #2e3e5a;
+	font-size:15px;
+}
+
+.genesis-nav-menu a, .genesis-nav-menu .toggle-header-search{
+	font-size:18px;
+}
+
+.site-container .wp-block-button .wp-block-button__link{
+font-family: Muli, sans-serif;
+font-weight: bold;
+}
+
+.interactive-card.card-basic h4.clb-card__title {
+    margin-top: 5px;
+    /* padding-bottom: 14px; */
+    padding: 1px;
+}
+
+
+
+@media only screen and (max-width: 800px){
+.genesis-responsive-menu .genesis-nav-menu .menu-item a {
+    background: #fff;
+    color: black;
+}
+}
+		</style>
+		</head>
+<body class="post-template-default single single-post postid-169 single-format-standard wp-custom-logo wp-embed-responsive header-full-width full-width-content genesis-breadcrumbs-hidden" itemscope="" itemtype="https://schema.org/WebPage"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0.498039215686"></fefuncr><fefuncg type="table" tablevalues="0 0.498039215686"></fefuncg><fefuncb type="table" tablevalues="0 0.498039215686"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.549019607843 0.988235294118"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.717647058824 0.254901960784"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 0.278431372549"></fefuncg><fefuncb type="table" tablevalues="0.592156862745 0.278431372549"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0"></fefuncr><fefuncg type="table" tablevalues="0 0.647058823529"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.780392156863 1"></fefuncr><fefuncg type="table" tablevalues="0 0.949019607843"></fefuncg><fefuncb type="table" tablevalues="0.352941176471 0.470588235294"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.650980392157 0.403921568627"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.447058823529 0.4"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.0980392156863 1"></fefuncr><fefuncg type="table" tablevalues="0 0.662745098039"></fefuncg><fefuncb type="table" tablevalues="0.847058823529 0.419607843137"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><div class="site-container"><ul class="genesis-skip-link"><li><a href="#genesis-nav-primary" class="screen-reader-shortcut"> Skip to primary navigation</a></li><li><a href="#genesis-content" class="screen-reader-shortcut"> Skip to main content</a></li></ul><header class="site-header" itemscope="" itemtype="https://schema.org/WPHeader"><div class="wrap"><div class="title-area"><a href="../index.htm" class="custom-logo-link" rel="home"><img width="1024" height="313" src="../wp-content/uploads/2020/10/cropped-CTD-School-1.png" class="custom-logo" alt="Code the Dream School" srcset="../wp-content/uploads/2020/10/cropped-CTD-School-1.png 1024w, ../wp-content/uploads/2020/10/cropped-CTD-School-1-300x92.png 300w, ../wp-content/uploads/2020/10/cropped-CTD-School-1-768x235.png 768w, ../wp-content/uploads/2020/10/cropped-CTD-School-1-500x153.png 500w, ../wp-content/uploads/2020/10/cropped-CTD-School-1-800x245.png 800w" sizes="(max-width: 1024px) 100vw, 1024px"></a><p class="site-title" itemprop="headline">Code the Dream School</p><p class="site-description" itemprop="description">Main hub for class materials for Code the Dream’s classes</p></div><nav class="nav-primary" aria-label="Main" itemscope="" itemtype="https://schema.org/SiteNavigationElement" id="genesis-nav-primary"><div class="wrap"><ul id="menu-main-menu" class="menu genesis-nav-menu menu-primary js-superfish"><li id="menu-item-293" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-293"><a href="../current-classes/index.htm" itemprop="url"><span itemprop="name">Classes</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1753" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1753"><a href="../sparrow-react-practicum/index.htm" itemprop="url"><span itemprop="name">Orange Sparrow: React Practicum</span></a></li>
+	<li id="menu-item-1752" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1752"><a href="../starfish-back-end-practicum/index.htm" itemprop="url"><span itemprop="name">Orange Starfish: Back End Practicum</span></a></li>
+	<li id="menu-item-1746" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1746"><a href="../cassiopeia-intro-to-programming/index.htm" itemprop="url"><span itemprop="name">Cassiopeia: Intro to Programming</span></a></li>
+	<li id="menu-item-1671" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1671"><a href="../orange-albatross-react-front-end-class/index.htm" itemprop="url"><span itemprop="name">Albatross: React</span></a></li>
+	<li id="menu-item-1665" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1665"><a href="../orange-alpaca-node-express-class/index.htm" itemprop="url"><span itemprop="name">Alpaca: Node/Express</span></a></li>
+	<li id="menu-item-1667" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1667"><a href="../borr-intro-to-programming/index.htm" itemprop="url"><span itemprop="name">Borr: Intro to Programming</span></a></li>
+	<li id="menu-item-1635" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1635"><a href="../bestla-intro-to-programming/index.htm" itemprop="url"><span itemprop="name">Bestla: Intro to Programming</span></a></li>
+</ul>
+</li>
+<li id="menu-item-382" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-382"><a href="../resources/index.htm" itemprop="url"><span itemprop="name">Class Resources</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-383" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-383"><a href="../student-resources/index.htm" itemprop="url"><span itemprop="name">Student Resources</span></a></li>
+	<li id="menu-item-1029" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1029"><a href="../front-end-vs-back-end/index.htm" itemprop="url"><span itemprop="name">Front End vs Back End</span></a></li>
+	<li id="menu-item-481" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-481"><a href="../final-projects-rubric/index.htm" itemprop="url"><span itemprop="name">Final Projects Rubric</span></a></li>
+	<li id="menu-item-1578" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1578"><a href="../git-process-for-code-the-dream-practicums/index.htm" itemprop="url"><span itemprop="name">Git Process for Code the Dream Practicums</span></a></li>
+	<li id="menu-item-483" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-483"><a href="../apprenticeship-requirements/index.htm" itemprop="url"><span itemprop="name">Apprenticeship Requirements</span></a></li>
+</ul>
+</li>
+<li id="menu-item-765" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-765"><a href="../job-seekers-toolkit/index.htm" itemprop="url"><span itemprop="name">Job Seekers Toolkit</span></a></li>
+<li id="menu-item-157" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-157"><a href="https://www.codethedream.org" itemprop="url"><span itemprop="name">Code the Dream</span></a></li>
+<li class="menu-item"><a href="#header-search-wrap" aria-controls="header-search-wrap" aria-expanded="false" role="button" class="toggle-header-search"><span class="screen-reader-text">Show Search</span><span class="ionicons ion-ios-search"></span></a></li></ul></div></nav><div id="header-search-wrap" class="header-search-wrap"><form class="search-form" method="get" action="https://learn.codethedream.org/" role="search" itemprop="potentialAction" itemscope="" itemtype="https://schema.org/SearchAction"><label class="search-form-label screen-reader-text" for="searchform-1">Search Code the Dream...</label><input class="search-form-input" type="search" name="s" id="searchform-1" placeholder="Search Code the Dream..." itemprop="query-input"><input class="search-form-submit" type="submit" value="Search"><meta content="https://learn.codethedream.org/?s={s}" itemprop="target"></form> <a href="#" role="button" aria-expanded="false" aria-controls="header-search-wrap" class="toggle-header-search close"><span class="screen-reader-text">Hide Search</span><span class="ionicons ion-ios-close"></span></a></div></div></header><div class="site-inner"><div class="content-sidebar-wrap"><main class="content" id="genesis-content"><article class="post-169 post type-post status-publish format-standard category-uncategorized entry" aria-label="Week 2: Rails Routes and Resources" itemscope="" itemtype="https://schema.org/CreativeWork"><header class="entry-header"><h1 class="entry-title" itemprop="headline">Week 2: Rails Routes and Resources</h1>
+<p class="entry-meta"><span class="entry-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a href="../author/johnryan1955/index.htm" class="entry-author-link" rel="author" itemprop="url"><span class="entry-author-name" itemprop="name">John McGarvey</span></a></span> &middot; <time class="entry-time" itemprop="datePublished" datetime="2020-04-09T13:18:46-04:00">April 9, 2020</time> &middot;  </p></header><div class="entry-content" itemprop="text">
+<p>Welcome to Week 2 of Rails Development! In this unit, we will: </p>
+
+
+
+<ul><li>Finish learning the basics of Ruby on Rails</li><li>Continue working in our blog application to learn about Rails scaffolding. </li></ul>
+
+
+
+<h2>Practice: Ruby on Rails Basics</h2>
+
+
+
+<p>In this Treehouse library class, you&#8217;ll keep learning about creating applications using Rails. Please note that this one is not part of the track, but you should do it anyway. </p>
+
+
+
+<p>Complete the lesson here: <a href="https://teamtreehouse.com/library/practice-ruby-on-rails-basics">https://teamtreehouse.com/library/practice-ruby-on-rails-basics</a></p>
+
+
+
+<h2>Rails Routes and Resources</h2>
+
+
+
+<p>When you do the second one, you will be working in the blog application.  As the instructor does each step, be sure you pause the video and do the same step to your version of the application.  You should test as you go along, to make sure what you have done is working.  The instructor will show several different ways to do things.  The best approach is not to erase, but to comment out the first methods the instructor shows before inserting the subsequent approaches, so that you can remember each way to do things.  Be sure you push to github.</p>
+
+
+
+<p>Complete the lesson here: <a href="https://teamtreehouse.com/library/rails-routes-and-resources">https://teamtreehouse.com/library/rails-routes-and-resources</a></p>
+
+
+
+<p>In summary, the assignments for week 2 are: </p>
+
+
+
+<ol><li><strong>Complete <a href="https://teamtreehouse.com/library/practice-ruby-on-rails-basics">Practice: Ruby on Rails Basics</a></strong></li><li><strong>Complete <a href="https://teamtreehouse.com/library/rails-routes-and-resources">Rails Routes and Resources</a></strong></li></ol>
+
+
+
+<p>And that&#8217;s it for the week! Remember to post your scrum updates and attend two mentor office hours sessions. </p>
+<!--<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+			xmlns:dc="http://purl.org/dc/elements/1.1/"
+			xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+		<rdf:Description rdf:about="https://learn.codethedream.org/rails-development-week2/"
+    dc:identifier="https://learn.codethedream.org/rails-development-week2/"
+    dc:title="Week 2: Rails Routes and Resources"
+    trackback:ping="https://learn.codethedream.org/rails-development-week2/trackback/" />
+</rdf:RDF>-->
+</div><footer class="entry-footer"><p class="entry-meta"><span class="entry-categories"><a href="../category/uncategorized/index.htm" rel="category tag">Uncategorized</a></span> </p></footer></article></main></div></div></div><footer class="site-footer" itemscope="" itemtype="https://schema.org/WPFooter"><div class="wrap"><p>Code the Dream | www.codethedream.org</p></div></footer>	<script type="text/javascript">
+		function genesisBlocksShare( url, title, w, h ){
+			var left = ( window.innerWidth / 2 )-( w / 2 );
+			var top  = ( window.innerHeight / 2 )-( h / 2 );
+			return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=600, height=600, top='+top+', left='+left);
+		}
+	</script>
+	<script type='text/javascript' src='../wp-content/plugins/font-awesome-5-wordpress-plugin/js/all.js?ver=1.0.0' id='font-awesome-5-all-js'></script>
+<script type='text/javascript' src='../wp-content/plugins/custom-gutenberg-blocks-master/js/clb-bootstrap-modal-only.js?ver=1.0.0' id='clb-modal-js-js'></script>
+<script type='text/javascript' src='../wp-content/plugins/custom-gutenberg-blocks-master/js/clb-move-modals.js?ver=1.0.0' id='clb-move-modals-js-js'></script>
+<script type='text/javascript' id='superpwa-register-sw-js-extra'>
+/* <![CDATA[ */
+var superpwa_sw = {"url":"\/superpwa-sw.js","disable_addtohome":"0","enableOnDesktop":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/super-progressive-web-apps/public/js/register-sw.js' id='superpwa-register-sw-js'></script>
+<script type='text/javascript' src='../wp-content/plugins/genesis-blocks/dist/assets/js/dismiss.js?ver=1660245318' id='genesis-blocks-dismiss-js-js'></script>
+<script type='text/javascript' src='../wp-includes/js/comment-reply.min.js?ver=6.0.1' id='comment-reply-js'></script>
+<script type='text/javascript' src='../wp-includes/js/hoverIntent.min.js?ver=1.10.2' id='hoverIntent-js'></script>
+<script type='text/javascript' src='../wp-content/themes/genesis/lib/js/menu/superfish.min.js?ver=1.7.10' id='superfish-js'></script>
+<script type='text/javascript' src='../wp-content/themes/genesis/lib/js/menu/superfish.args.min.js?ver=3.3.5' id='superfish-args-js'></script>
+<script type='text/javascript' src='../wp-content/themes/genesis/lib/js/skip-links.min.js?ver=3.3.5' id='skip-links-js'></script>
+<script type='text/javascript' src='../wp-content/themes/monochrome-pro/js/global.js?ver=1.0.0' id='monochrome-global-script-js'></script>
+<script type='text/javascript' src='../wp-content/themes/monochrome-pro/js/block-effects.js?ver=1.0.0' id='monochrome-block-effects-js'></script>
+<script type='text/javascript' id='monochrome-responsive-menu-js-extra'>
+/* <![CDATA[ */
+var genesis_responsive_menu = {"mainMenu":"Menu","menuIconClass":"ionicons-before ion-ios-menu","subMenu":"Submenu","subMenuIconClass":"ionicons-before ion-ios-arrow-down","menuClasses":{"combine":[],"others":[".nav-primary"]}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/themes/monochrome-pro/js/responsive-menus.min.js?ver=1.3.0' id='monochrome-responsive-menu-js'></script>
+<script type='text/javascript' id='learndash-front-js-extra'>
+/* <![CDATA[ */
+var ldVars = {"postID":"169","videoReqMsg":"You must watch the video before accessing this content","ajaxurl":"https:\/\/learn.codethedream.org\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/sfwd-lms/themes/ld30/assets/js/learndash.js?ver=4.3.0.2' id='learndash-front-js'></script>
+</body></html>
