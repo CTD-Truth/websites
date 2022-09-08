@@ -1,0 +1,489 @@
+/*!
+ * Bootstrap v4.0.0 (https://getbootstrap.com)
+ * Copyright 2011-2018 The Bootstrap Authors
+ * Copyright 2011-2018 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/* CSS Edited by Chris Liu-Beers for "Custom Bootstrap" plugin ----- */
+
+/* ------------------------ COLLAPSE ------------------------------- */
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.15s linear;
+}
+
+.fade.show {
+  opacity: 1;
+}
+
+.collapse {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
+}
+
+tr.collapse.show {
+  display: table-row;
+}
+
+tbody.collapse.show {
+  display: table-row-group;
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+
+/* ------- CLB Customizations ----------- */
+
+.collapse-button-area {
+     text-align: center;
+     width: 100%;
+     padding: 20px;
+     background: #aaa;
+     color: #fff;
+     border: 1px solid #aaa;
+     border-top: none;
+}
+
+a.collapse-section {
+     color: #fff;
+     font-weight: 700;
+     text-decoration: none;
+}
+
+.collapse, .collapsing {
+     text-align: left;
+     border: 1px solid #aaa;
+     border-top: none;
+     background: #fafafa;
+     padding: 0px;
+     color: #333;
+}
+
+.clb-collapse-area {
+     margin-bottom: 20px;
+}
+
+.collapse-text {
+	padding: 20px;
+}
+
+/* ------------------------ END COLLAPSE ------------------------------- */
+
+
+
+/* ------------------------ MODAL ------------------------------- */
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  outline: 0;
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 0.5rem;
+  pointer-events: none;
+}
+
+.modal.fade .modal-dialog {
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  -webkit-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+}
+
+.modal.show .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-dialog-centered {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: calc(100% - (0.5rem * 2));
+}
+
+.modal-content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+}
+
+.modal-backdrop.show {
+  opacity: 0.5;
+}
+
+.modal-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  margin-top: 12px;
+}
+
+.modal-header .close {
+  padding: 1rem;
+  padding-bottom: 0;
+  /* margin: -1rem -1rem -1rem auto; */
+}
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.modal-body {
+  position: relative;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.modal-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.modal-footer > :not(:first-child) {
+  margin-left: .25rem;
+}
+
+.modal-footer > :not(:last-child) {
+  margin-right: .25rem;
+}
+
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+  }
+  .modal-dialog-centered {
+    min-height: calc(100% - (1.75rem * 2));
+  }
+  .modal-sm {
+    max-width: 300px;
+  }
+}
+
+
+
+/* ----------- CLB Customizations ------------- */
+
+button.close {
+-webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    font-size: 3rem;
+}
+
+.modal-header .close {
+    margin-top: -2rem;
+}
+
+.close {
+  float: right !important;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+  }
+
+.close:hover {
+  opacity: 1;
+}
+
+.modal-backdrop {
+  background-color: #fff;
+}
+
+.modal-backdrop.show {
+  opacity: 0.95;
+}
+
+.modal-header .close {
+	opacity: .5;
+}
+
+.modal-header .close:hover {
+	opacity: 1;
+}
+
+.modal-header button.close {
+    color: red;
+}
+
+.modal-body {
+	padding: 30px;
+}
+
+@media (min-width: 800px) {
+  .modal-dialog {
+      max-width: 780px;
+      margin: 30px auto;
+  }
+}
+
+
+/* ------------------------ END MODAL ------------------------------- */
+
+
+
+/* ------------------------ NAVTABS ------------------------------- */
+
+.nav {
+     display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+}
+
+.nav-tabs .nav-link {
+     border: 1px solid transparent;
+     border-top-left-radius: 0.25rem;
+     border-top-right-radius: 0.25rem;
+     display: block;
+     padding: 0.5em 1em;
+     text-decoration: none;
+}
+
+.nav-tabs .nav-link:hover {
+     text-decoration: none;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border-color: #e9ecef #e9ecef #dee2e6;
+}
+
+.nav-tabs .nav-link.disabled {
+  color: #6c757d;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.nav-tabs .dropdown-menu {
+  margin-top: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0.25rem;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.nav-fill .nav-item {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.nav-justified .nav-item {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+
+.tab-content > .active {
+  display: block;
+}
+
+
+
+/* ------- CLB Custom NavTabs Bootstrap CSS ----------- */
+
+.clb-nav-tabs-top ul {
+     margin-left: 0px;
+}
+
+.clb-nav-tabs-top ul > li {
+    list-style-type: none;
+}
+
+.tab-content {
+     margin-bottom: 26px;
+     padding-bottom: 26px;
+     border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs .nav-link.active {
+  font-weight: 700;
+}
+
+
+
+
+/* ----------------------------------------------------- */
+/* ------- CLB Custom NavTabs Mobile Version ----------- */
+/* ----------------------------------------------------- */
+
+
+.tab-mobile-title {
+     display: none;
+}
+
+
+@media (max-width: 800px) {
+
+     .nav-tabs .nav-item {
+          width: 100%;
+          background: #fff;
+
+     }
+
+     .nav {
+          display: inline;
+     }
+
+     .nav-tabs .nav-link {
+          color: #aaa;
+          border: 1px solid #ddd;
+          border-radius: 0px;
+          font-weight: 300;
+     }
+
+     .nav-tabs .nav-link.active {
+          font-weight: 700;
+          color: #fff;
+          background: #eee;
+          border-radius: 0px;
+          box-shadow: inset 0 0 8px rgba(0,0,0,.15);
+          }
+
+     .tab-content > .active {
+         margin-top: 40px;
+     }
+
+     .nav-tabs .nav-link::after {
+          font-family: Dashicons;
+          content: "\f132";
+          float: right;
+     }
+
+     .nav-tabs .nav-link.active::after {
+          font-family: Dashicons;
+          content: "\f347";
+          float: right;
+     }
+
+
+
+}
+
+
+/* ------------------------ END NAVTABS ------------------------------- */
